@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sum Calculator</title>
+    <style>
+        body { font-family: sans-serif; display: flex; justify-content: center; padding-top: 50px; }
+        .card { border: 1px solid #ccc; padding: 20px; border-radius: 8px; box-shadow: 2px 2px 10px rgba(0,0,0,0.1); }
+        input { width: 60px; padding: 8px; margin: 10px; border: 1px solid #ddd; border-radius: 4px; }
+        .result { font-weight: bold; color: #007bff; font-size: 1.2rem; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>单利息</h2>
+    <input type="number" id="P" placeholder="本金" oninput="calc()"> 
+    <span>x</span>
+    <input type="number" id="r" placeholder="利息%" oninput="calc()">
+    <span>x</span>
+    <input type="number" id="year" placeholder="年份" oninput="calc()">
+    <span>+</span>
+    <input type="number" id="month" placeholder="月份" oninput="calc()">
+    <hr>
+    <p>Total: <span class="result" id="interest">0</span></p>
+    <h2>本利和</h2>
+    <p>Total: <span class="result" id="sum">0</span></p>
+</div>
+
+<div class="card">
+    <h2>复利息</h2>
+    <input type="number" id="num1" placeholder="本金" oninput="calc()"> 
+    <span>+</span>
+    <input type="number" id="num2" placeholder="利率%" oninput="calc()">
+    <span>+</span>
+    <input type="number" id="num3" placeholder="存款期" oninput="calc()">
+    <hr>
+    <p>Total: <span class="result" id="sum">0</span></p>
+</div>
+
+<script>
+    function calc() {
+        // Get the values from the input fields
+        const n1 = parseFloat(document.getElementById('P').value) || 0;
+        const n2 = parseFloat(document.getElementById('r').value) || 0;
+        const n3 = parseFloat(document.getElementById('year').value) || 0;
+        const n4 = parseFloat(document.getElementById('month').value) || 0;
+        // Update the display with the sum
+        document.getElementById('interest').innerText = n1 * (n2/100) * (n3 + (n4/12));
+        document.getElementById('sum').innerText = n1 + (n1 * (n2/100) * (n3 + (n4*12)));
+    }
+</script>
+
+</body>
+</html>
